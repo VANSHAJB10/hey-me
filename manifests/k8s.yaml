@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hey-vanshaj
+  labels:
+    app: hey-vanshaj
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hey-vanshaj
+  template:
+    metadata:
+      labels:
+        app: hey-vanshaj
+    spec:
+      containers:
+        - name: hey-vanshaj
+          image: <+artifact.image>
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hey-vanshaj-service
+spec:
+  selector:
+    app: hey-vanshaj
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
