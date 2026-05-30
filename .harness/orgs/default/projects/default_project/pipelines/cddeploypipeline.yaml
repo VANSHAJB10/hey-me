@@ -14,6 +14,14 @@ pipeline:
           deploymentType: Kubernetes
           service:
             serviceRef: heyMeAppSvc
+            serviceInputs:
+              serviceDefinition:
+                type: Kubernetes
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
           environment:
             environmentRef: preprod
             deployToAll: false
