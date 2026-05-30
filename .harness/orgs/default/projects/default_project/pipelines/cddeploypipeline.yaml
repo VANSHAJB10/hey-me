@@ -91,3 +91,10 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+  properties:
+    ci:
+      codebase:
+        connectorRef: github_connector_for_whole_account
+        repoName: hey-me
+        build: <+input>
+        sparseCheckout: []
