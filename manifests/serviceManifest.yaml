@@ -3,7 +3,34 @@ service:
   identifier: heyMeAppSvc
   serviceDefinition:
     type: Kubernetes
-    spec: {}
+    spec:
+      manifests:
+        - manifest:
+            identifier: serviceManifestforK8s
+            type: K8sManifest
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: github_connector_for_whole_account
+                  gitFetchType: Branch
+                  paths:
+                    - manifests/serviceManifest.yaml
+                  repoName: hey-me
+                  branch: main
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: onoarding_pipeline_artifactory
+                imagePath: vanshajb10/hey-vanshaj
+                tag: <+input>
+                digest: ""
+              identifier: heyVanshajDockerArtifact
+              type: DockerRegistry
   gitOpsEnabled: false
   orgIdentifier: default
   projectIdentifier: default_project
