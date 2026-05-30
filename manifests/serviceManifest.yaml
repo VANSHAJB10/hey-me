@@ -15,7 +15,7 @@ service:
                   connectorRef: github_connector_for_whole_account
                   gitFetchType: Branch
                   paths:
-                    - manifests/serviceManifest.yaml
+                    - manifests/k8s.yaml
                   repoName: hey-me
                   branch: main
               skipResourceVersioning: false
