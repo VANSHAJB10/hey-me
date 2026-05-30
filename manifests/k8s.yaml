@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hey-vanshaj
-          image: dummy:latest
+          image: vanshajb10/hey-vanshaj:10
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
