@@ -64,23 +64,13 @@ pipeline:
                   name: Primary Deployment
                   identifier: primaryDeployment
                   steps:
-                    - parallel:
-                        - step:
-                            name: Rolling Deployment
-                            identifier: rollingDeployment
-                            type: K8sRollingDeploy
-                            timeout: 10m
-                            spec:
-                              skipDryRun: false
-                        - step:
-                            type: K8sRollout
-                            name: K8sRollout_Primary
-                            identifier: K8sRollout_Primary
-                            spec:
-                              command: restart
-                              resources:
-                                type: ReleaseName
-                            timeout: 10m
+                    - step:
+                        name: Rolling Deployment
+                        identifier: rollingDeployment
+                        type: K8sRollingDeploy
+                        timeout: 10m
+                        spec:
+                          skipDryRun: false
             rollbackSteps:
               - step:
                   name: Canary Delete
