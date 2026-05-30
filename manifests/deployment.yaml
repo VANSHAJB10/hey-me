@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hey-vanshaj
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hey-vanshaj
+  template:
+    metadata:
+      labels:
+        app: hey-vanshaj
+    spec:
+      containers:
+      - name: hey-vanshaj
+        image: <+artifact.image>
+        ports:
+        - containerPort: 8000
