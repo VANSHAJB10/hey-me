@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hey-vanshaj
-          image: <+artifact.image>
+          image: <+artifact.imagePath>:<+artifact.tag>
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
